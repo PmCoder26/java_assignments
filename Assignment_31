@@ -1,0 +1,95 @@
+import java.util.*;
+public class recursion_assignment_31 {
+    public static Scanner sc=new Scanner(System.in);
+
+    public static int amgNum(int num, int digits){
+        if(num==0){
+            return 0;
+        }
+        else{
+            return (int)Math.pow(num%10,digits)+amgNum(num/10,digits);
+        }
+    }
+
+    public static int product(int x, int y){
+        if(y==0){
+            return 0;
+        }
+        else{
+            return x+product(x, y-1);
+        }
+    }
+
+    public static void chk_prime(int num, int div){
+        if(num==div){
+            System.out.println("Yes");
+        }
+        else if(num%div==0){
+            System.out.println("No");
+        }
+        else{
+            chk_prime(num, div+1);
+        }
+    }
+
+    public static int binary(int decimal, int position){
+        if(decimal==0){
+            return 0;
+        }
+        else{
+            return (decimal%2)*position+binary(decimal/2, position*10);
+        }
+    }
+
+    public static int greyCode(int binary, int position) {
+        if (binary == 0) {
+            return 0;
+        }
+        else if(binary%10==1 && (((int)binary/10)%10==1)){
+            return 0*position+greyCode(binary/10,position*10);
+        }
+        else{
+            return (((binary%10))|(binary/10)%10)*position+greyCode(binary/10, position*10);
+        }
+    }
+
+    public static void main(String[] args){
+
+//      Q.1.
+//      Ans-->
+        int num=sc.nextInt();
+        String num_str=Integer.toString(num);
+        int digits=num_str.length();
+        int result=amgNum(num, digits);
+        if(result==num){
+            System.out.println("Yes");
+        }
+        else{
+            System.out.println("No");
+        }
+
+//      Q.2.
+//      Ans-->
+        System.out.print("Enter the value of x : ");
+        int x=sc.nextInt();
+        System.out.print("Enter the value of y : ");
+        int y=sc.nextInt();
+        System.out.println("The product is : "+product(x, y));
+
+//      Q.3.
+//      Ans-->
+        System.out.print("Enter the number : ");
+        int num=sc.nextInt();
+        chk_prime(num, 2);
+
+//      Q.4.
+//      Ans-->
+        int decimal=sc.nextInt();
+        System.out.println(binary(decimal, 1));
+
+//      Q.5.
+//      Ans-->
+        int binary=sc.nextInt();
+        System.out.println(greyCode(binary, 1));
+    }
+}
